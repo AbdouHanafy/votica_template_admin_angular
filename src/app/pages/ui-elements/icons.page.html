@@ -1,7 +1,7 @@
 <section class="ui-page">
   <header>
-    <h1>Icons</h1>
-    <p>Icon library: search, select, and copy icons for your UI.</p>
+    <h1>{{ language.t('ui.icons.title') }}</h1>
+    <p>{{ language.t('ui.icons.subtitle') }}</p>
   </header>
 
   <app-card>
@@ -11,7 +11,7 @@
           <span class="material-symbols-rounded">{{ icon }}</span>
           <small>{{ icon }}</small>
           @if (copied() === icon) {
-            <strong>Copied</strong>
+            <strong>{{ language.t('ui.icons.copied') }}</strong>
           }
         </button>
       }

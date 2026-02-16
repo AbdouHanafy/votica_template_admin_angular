@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardComponent } from '../../components/ui/card/card.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-widget-page',
@@ -9,10 +10,11 @@ import { CardComponent } from '../../components/ui/card/card.component';
   styleUrl: './widget.page.scss'
 })
 export class WidgetPage {
+  readonly language = inject(LanguageService);
   readonly widgets = [
-    { label: 'Active Subscriptions', value: '3,842', delta: '+5.4%' },
-    { label: 'Monthly Revenue', value: '$82,940', delta: '+11.2%' },
-    { label: 'Open Tickets', value: '124', delta: '-2.1%' },
-    { label: 'Conversion Rate', value: '6.7%', delta: '+0.9%' }
+    { key: 'widget.activeSubs', value: '3,842', delta: '+5.4%' },
+    { key: 'widget.monthlyRevenue', value: '$82,940', delta: '+11.2%' },
+    { key: 'widget.openTickets', value: '124', delta: '-2.1%' },
+    { key: 'widget.conversionRate', value: '6.7%', delta: '+0.9%' }
   ];
 }

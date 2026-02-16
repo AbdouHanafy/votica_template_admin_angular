@@ -1,15 +1,15 @@
 <section class="forms-page">
   <header class="forms-page__header">
-    <h1>Text Editors</h1>
-    <p>WYSIWYG and code-editor style areas for rich text and developer content.</p>
+    <h1>{{ language.t('forms.editors.title') }}</h1>
+    <p>{{ language.t('forms.editors.subtitle') }}</p>
   </header>
 
   <div class="columns">
-    <app-card title="WYSIWYG Editor (Demo)">
+    <app-card [title]="language.t('forms.editors.wysiwyg')">
       <div class="editor" [innerHTML]="richText"></div>
     </app-card>
 
-    <app-card title="Code Editor (Demo)">
+    <app-card [title]="language.t('forms.editors.code')">
       <pre class="code-editor">{{ codeText }}</pre>
     </app-card>
   </div>

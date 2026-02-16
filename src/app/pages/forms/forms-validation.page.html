@@ -1,25 +1,25 @@
 <section class="forms-page">
   <header class="forms-page__header">
-    <h1>Form Validation</h1>
-    <p>Client-side and server-side validation examples with error handling.</p>
+    <h1>{{ language.t('forms.validation.title') }}</h1>
+    <p>{{ language.t('forms.validation.subtitle') }}</p>
   </header>
 
-  <app-card title="Validation Demo">
+  <app-card [title]="language.t('forms.validation.demo')">
     <form class="form-grid" [formGroup]="form" (ngSubmit)="submit()">
       <label>
-        Email
+        {{ language.t('forms.basic.email') }}
         <input type="email" formControlName="email" />
       </label>
       @if (form.controls.email.touched && form.controls.email.invalid) {
-        <small class="error">Please enter a valid email address.</small>
+        <small class="error">{{ language.t('forms.validation.invalidEmail') }}</small>
       }
 
       <label>
-        Password
+        {{ language.t('auth.password') }}
         <input type="password" formControlName="password" />
       </label>
       @if (form.controls.password.touched && form.controls.password.invalid) {
-        <small class="error">Password must be at least 8 characters.</small>
+        <small class="error">{{ language.t('forms.validation.invalidPassword') }}</small>
       }
 
       @if (serverError()) {
@@ -27,7 +27,7 @@
       }
 
       <div class="actions">
-        <app-button type="submit">Validate Form</app-button>
+        <app-button type="submit">{{ language.t('forms.validation.submit') }}</app-button>
       </div>
     </form>
   </app-card>

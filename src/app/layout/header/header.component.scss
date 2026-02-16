@@ -19,6 +19,12 @@
   gap: 10px;
 }
 
+.quick-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .icon-btn {
   width: 38px;
   height: 38px;
@@ -93,6 +99,60 @@
     font-size: 0.875rem;
     font-weight: 600;
   }
+}
+
+.lang-chip {
+  height: 38px;
+  border-radius: 11px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: var(--color-text-strong);
+  font: inherit;
+  transition: border-color 0.2s ease;
+
+}
+
+.lang-chip:hover {
+  border-color: var(--color-primary);
+}
+
+.lang-menu {
+  padding: 8px;
+  display: grid;
+  gap: 2px;
+
+  button {
+    height: 36px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+
+  button:hover,
+  .is-active {
+    background: var(--color-surface-alt);
+    color: var(--color-text-strong);
+  }
+}
+
+.flag-img {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-border) 80%, transparent);
 }
 
 .user-chip:hover {
@@ -229,4 +289,9 @@
   .user-chip > span:nth-child(2) {
     display: none;
   }
+
+}
+
+:host-context([dir='rtl']) .search input {
+  text-align: right;
 }

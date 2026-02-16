@@ -1,15 +1,15 @@
 <section class="ui-page">
   <header>
-    <h1>Animations</h1>
-    <p>Prebuilt animations: fade, slide, bounce, and hover effects.</p>
+    <h1>{{ language.t('ui.anim.title') }}</h1>
+    <p>{{ language.t('ui.anim.subtitle') }}</p>
   </header>
 
   <div class="grid">
     @for (effect of effects; track effect) {
       <app-card>
         <div class="effect-card">
-          <strong>{{ effect }}</strong>
-          <span>Preview-ready motion preset</span>
+          <strong>{{ language.t(effect) }}</strong>
+          <span>{{ language.t('ui.anim.preview') }}</span>
         </div>
       </app-card>
     }

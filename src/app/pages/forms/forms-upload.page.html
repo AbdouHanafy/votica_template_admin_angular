@@ -1,10 +1,10 @@
 <section class="forms-page">
   <header class="forms-page__header">
-    <h1>File Upload</h1>
-    <p>Upload files/images with drag-drop and multiple file selection.</p>
+    <h1>{{ language.t('forms.upload.title') }}</h1>
+    <p>{{ language.t('forms.upload.subtitle') }}</p>
   </header>
 
-  <app-card title="Upload Zone">
+  <app-card [title]="language.t('forms.upload.zone')">
     <div
       class="dropzone"
       [class.is-dragging]="dragActive()"
@@ -12,14 +12,14 @@
       (dragleave)="dragActive.set(false)"
       (drop)="onDrop($event)"
     >
-      <p>Drag and drop files here, or select manually.</p>
+      <p>{{ language.t('forms.upload.dragDrop') }}</p>
       <input type="file" multiple (change)="onFileSelect($event)" />
     </div>
     <div class="file-list">
       @for (file of files(); track file) {
         <span>{{ file }}</span>
       } @empty {
-        <small>No files selected yet.</small>
+        <small>{{ language.t('forms.upload.none') }}</small>
       }
     </div>
   </app-card>

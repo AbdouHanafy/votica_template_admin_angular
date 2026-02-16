@@ -3,6 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CardComponent } from '../../components/ui/card/card.component';
 import { ButtonComponent } from '../../components/ui/button/button.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-forms-validation-page',
@@ -12,6 +13,7 @@ import { ButtonComponent } from '../../components/ui/button/button.component';
   styleUrl: './forms-common.page.scss'
 })
 export class FormsValidationPage {
+  readonly language = inject(LanguageService);
   private readonly fb = inject(FormBuilder);
   readonly serverError = signal('');
   readonly form = this.fb.group({
@@ -27,7 +29,7 @@ export class FormsValidationPage {
     }
 
     if (this.form.value.email === 'taken@example.com') {
-      this.serverError.set('Server validation: this email is already registered.');
+      this.serverError.set(this.language.t('forms.validation.serverEmailTaken'));
       return;
     }
   }

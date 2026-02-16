@@ -1,15 +1,15 @@
 <section class="ui-page">
   <header>
-    <h1>Advance</h1>
-    <p>Advanced UI elements: modals, accordions, tabs, and dropdowns.</p>
+    <h1>{{ language.t('ui.advance.title') }}</h1>
+    <p>{{ language.t('ui.advance.subtitle') }}</p>
   </header>
 
-  <app-card title="Advanced Components Library">
+  <app-card [title]="language.t('ui.advance.library')">
     <div class="list">
-      @for (item of components; track item.name) {
+      @for (item of components; track item.nameKey) {
         <article>
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.usage }}</p>
+          <h3>{{ language.t(item.nameKey) }}</h3>
+          <p>{{ language.t(item.usageKey) }}</p>
         </article>
       }
     </div>

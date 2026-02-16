@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CardComponent } from '../../components/ui/card/card.component';
+import { LanguageService } from '../../core/services/language.service';
 import { FakeDataService } from '../../services/fake-data.service';
 
 @Component({
@@ -11,4 +12,5 @@ import { FakeDataService } from '../../services/fake-data.service';
 })
 export class ProfilePage {
   readonly data = inject(FakeDataService);
+  readonly language = inject(LanguageService);
 }

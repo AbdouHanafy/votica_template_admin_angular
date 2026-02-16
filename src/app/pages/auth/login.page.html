@@ -2,16 +2,16 @@
   <form class="auth-card">
     <div class="auth-brand">
       <img src="logo_adminD.png" alt="Votica logo" />
-      <span>Votica Template Admin Dashboard</span>
+      <span>{{ language.t('app.brand') }} {{ language.t('app.subtitle') }}</span>
     </div>
-    <h1>Welcome back</h1>
-    <p>Sign in to your Votica dashboard account.</p>
-    <input type="email" placeholder="Email address" />
-    <input type="password" placeholder="Password" />
+    <h1>{{ language.t('auth.login.title') }}</h1>
+    <p>{{ language.t('auth.login.subtitle') }}</p>
+    <input type="email" [placeholder]="language.t('auth.email')" />
+    <input type="password" [placeholder]="language.t('auth.password')" />
     <div class="auth-cta">
-      <app-button type="submit">Login</app-button>
+      <app-button type="submit">{{ language.t('auth.login.button') }}</app-button>
     </div>
-    <a routerLink="/auth/forgot-password">Forgot password?</a>
-    <span>Need an account? <a routerLink="/auth/register">Register</a></span>
+    <a routerLink="/auth/forgot-password">{{ language.t('auth.forgot') }}</a>
+    <span>{{ language.t('auth.needAccount') }} <a routerLink="/auth/register">{{ language.t('auth.register.link') }}</a></span>
   </form>
 </section>

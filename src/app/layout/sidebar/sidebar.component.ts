@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LanguageService } from '../../core/services/language.service';
 import { NavItem } from '../../models/navigation.model';
 
 @Component({
@@ -11,6 +12,7 @@ import { NavItem } from '../../models/navigation.model';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  readonly language = inject(LanguageService);
   readonly items = input.required<NavItem[]>();
   readonly collapsed = input(false);
   readonly mobileOpen = input(false);

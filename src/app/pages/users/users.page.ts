@@ -8,6 +8,7 @@ import { CardComponent } from '../../components/ui/card/card.component';
 import { ModalComponent } from '../../components/ui/modal/modal.component';
 import { TableAction, TableActionEvent, TableColumn } from '../../models/table.model';
 import { User, UserRole, UserStatus } from '../../models/user.model';
+import { LanguageService } from '../../core/services/language.service';
 import { FakeDataService } from '../../services/fake-data.service';
 
 @Component({
@@ -27,6 +28,7 @@ import { FakeDataService } from '../../services/fake-data.service';
 })
 export class UsersPage {
   private readonly data = inject(FakeDataService);
+  readonly language = inject(LanguageService);
 
   readonly users = signal<User[]>([...this.data.users]);
   readonly viewMode = signal<'list' | 'card'>('list');
@@ -36,25 +38,25 @@ export class UsersPage {
   readonly selectedUser = signal<User | null>(null);
   readonly showDeleteModal = signal(false);
 
-  readonly usersColumns: TableColumn[] = [
-    { key: 'name', label: 'Name', sortable: true, type: 'avatar' },
-    { key: 'email', label: 'Email', sortable: true, type: 'email' },
-    { key: 'role', label: 'Role', sortable: true, type: 'text' },
-    { key: 'status', label: 'Status', sortable: true, type: 'badge' },
-    { key: 'actions', label: 'Actions', type: 'actions' }
-  ];
+  readonly usersColumns = computed<TableColumn[]>(() => [
+    { key: 'name', label: this.language.t('table.name'), sortable: true, type: 'avatar' },
+    { key: 'email', label: this.language.t('table.email'), sortable: true, type: 'email' },
+    { key: 'role', label: this.language.t('table.role'), sortable: true, type: 'text' },
+    { key: 'status', label: this.language.t('table.status'), sortable: true, type: 'badge' },
+    { key: 'actions', label: this.language.t('table.actions'), type: 'actions' }
+  ]);
 
-  readonly rowActions: TableAction[] = [
-    { key: 'edit', icon: 'edit', label: 'Edit' },
-    { key: 'delete', icon: 'delete', label: 'Delete', tone: 'danger' }
-  ];
+  readonly rowActions = computed<TableAction[]>(() => [
+    { key: 'edit', icon: 'edit', label: this.language.t('users.edit') },
+    { key: 'delete', icon: 'delete', label: this.language.t('users.delete'), tone: 'danger' }
+  ]);
 
   readonly deleteMessage = computed(() => {
     const user = this.selectedUser();
     if (!user) {
-      return 'Are you sure you want to remove this user?';
+      return this.language.t('users.deleteUser');
     }
-    return `Delete ${user.name} from this workspace? This action cannot be undone.`;
+    return `${this.language.t('users.deleteUser')}: ${user.name}`;
   });
 
   readonly totalUsers = computed(() => this.users().length);

@@ -1,22 +1,22 @@
 <section class="ui-page">
   <header>
-    <h1>Basic</h1>
-    <p>Basic UI elements: buttons, typography, colors, alerts, badges.</p>
+    <h1>{{ language.t('ui.basic.title') }}</h1>
+    <p>{{ language.t('ui.basic.subtitle') }}</p>
   </header>
 
-  <app-card title="Buttons and Badges">
+  <app-card [title]="language.t('ui.basic.buttonsBadges')">
     <div class="row">
-      <app-button>Primary</app-button>
-      <app-button variant="ghost">Ghost</app-button>
-      <app-button variant="danger">Danger</app-button>
+      <app-button>{{ language.t('ui.basic.primary') }}</app-button>
+      <app-button variant="ghost">{{ language.t('ui.basic.ghost') }}</app-button>
+      <app-button variant="danger">{{ language.t('ui.basic.danger') }}</app-button>
       <app-badge label="active" />
       <app-badge label="inactive" />
     </div>
   </app-card>
 
-  <app-card title="Typography and Alerts">
-    <h2>Heading Example</h2>
-    <p class="muted">Consistent typography scale for premium dashboards.</p>
-    <div class="alert">This is a sample alert block for system notices.</div>
+  <app-card [title]="language.t('ui.basic.typographyAlerts')">
+    <h2>{{ language.t('ui.basic.headingExample') }}</h2>
+    <p class="muted">{{ language.t('ui.basic.typographyText') }}</p>
+    <div class="alert">{{ language.t('ui.basic.alert') }}</div>
   </app-card>
 </section>

@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CardComponent } from '../../components/ui/card/card.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-icons-page',
@@ -9,6 +10,7 @@ import { CardComponent } from '../../components/ui/card/card.component';
   styleUrl: './icons.page.scss'
 })
 export class IconsPage {
+  readonly language = inject(LanguageService);
   readonly copied = signal('');
   readonly icons = ['dashboard', 'monitoring', 'group', 'settings', 'notifications', 'search', 'table_rows', 'task_alt'];
 

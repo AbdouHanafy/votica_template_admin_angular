@@ -1,14 +1,14 @@
 <section class="dashboard">
   <header class="dashboard__hero">
     <div>
-      <h1>Executive Dashboard</h1>
-      <p>Track revenue, users, growth, and operational activity in real time.</p>
+      <h1>{{ language.t('dashboard.title') }}</h1>
+      <p>{{ language.t('dashboard.subtitle') }}</p>
     </div>
     <div class="hero-highlight">
       <span class="material-symbols-rounded">auto_graph</span>
       <div>
         <strong>$23,980</strong>
-        <small>Monthly recurring revenue</small>
+        <small>{{ language.t('dashboard.mrr') }}</small>
       </div>
     </div>
   </header>
@@ -18,7 +18,7 @@
       <app-card [padded]="false">
         <div class="stat-card">
           <div class="stat-card__head">
-            <p>{{ stat.label }}</p>
+            <p>{{ statLabel(stat.label) }}</p>
             <span class="material-symbols-rounded">{{ stat.icon }}</span>
           </div>
           <h2>{{ stat.value }}</h2>
@@ -29,9 +29,9 @@
   </div>
 
   <div class="charts-grid">
-    <app-card title="Revenue Growth" subtitle="Monthly recurring revenue">
+    <app-card [title]="language.t('dashboard.revenueGrowth')" [subtitle]="language.t('dashboard.mrr')">
       <app-chart
-        [series]="revenueChartSeries"
+        [series]="revenueChartSeries()"
         [chart]="{ type: 'line', height: 280, toolbar: { show: false }, zoom: { enabled: false } }"
         [stroke]="{ curve: 'smooth', width: 3 }"
         [fill]="{ type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.05 } }"
@@ -41,9 +41,9 @@
       />
     </app-card>
 
-    <app-card title="New Users" subtitle="Last 7 days">
+    <app-card [title]="language.t('dashboard.newUsers')" [subtitle]="language.t('dashboard.last7Days')">
       <app-chart
-        [series]="usersChartSeries"
+        [series]="usersChartSeries()"
         [chart]="{ type: 'bar', height: 280, toolbar: { show: false } }"
         [colors]="['#14b8a6']"
         [xaxis]="{ categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }"
@@ -52,10 +52,10 @@
       />
     </app-card>
 
-    <app-card title="Traffic Sources" subtitle="Current distribution">
+    <app-card [title]="language.t('dashboard.trafficSources')" [subtitle]="language.t('dashboard.currentDistribution')">
       <app-chart
         [series]="trafficSeries"
-        [labels]="trafficLabels"
+        [labels]="trafficLabels()"
         [chart]="{ type: 'pie', height: 280 }"
         [colors]="['#2563eb', '#0ea5e9', '#22c55e', '#f59e0b']"
         [legend]="{ position: 'bottom' }"
@@ -64,7 +64,7 @@
   </div>
 
   <div class="bottom-grid">
-    <app-card title="Recent Activity" subtitle="Latest product and billing events">
+    <app-card [title]="language.t('dashboard.recentActivity')" [subtitle]="language.t('dashboard.recentActivitySub')">
       <div class="activity-list">
         @for (activity of fakeData.recentActivity; track activity.id) {
           <article class="activity-item">
@@ -81,9 +81,9 @@
 
     <app-card>
       <app-table
-        [title]="'Recent Orders'"
-        [subtitle]="'Most recent order updates'"
-        [columns]="ordersColumns"
+        [title]="language.t('dashboard.recentOrders')"
+        [subtitle]="language.t('dashboard.recentOrdersSub')"
+        [columns]="ordersColumns()"
         [rows]="$any(fakeData.orders)"
         [pageSize]="5"
       />
@@ -92,9 +92,9 @@
 
   <app-card>
     <app-table
-      [title]="'Recent Users'"
-      [subtitle]="'New users added to the platform'"
-      [columns]="usersColumns"
+      [title]="language.t('dashboard.recentUsers')"
+      [subtitle]="language.t('dashboard.recentUsersSub')"
+      [columns]="usersColumns()"
       [rows]="$any(fakeData.users)"
       [pageSize]="6"
     />

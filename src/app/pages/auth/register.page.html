@@ -2,16 +2,16 @@
   <form class="auth-card">
     <div class="auth-brand">
       <img src="logo_adminD.png" alt="Votica logo" />
-      <span>Votica Template Admin Dashboard</span>
+      <span>{{ language.t('app.brand') }} {{ language.t('app.subtitle') }}</span>
     </div>
-    <h1>Create account</h1>
-    <p>Start managing your Votica SaaS operations.</p>
-    <input type="text" placeholder="Full name" />
-    <input type="email" placeholder="Email address" />
-    <input type="password" placeholder="Password" />
+    <h1>{{ language.t('auth.register.title') }}</h1>
+    <p>{{ language.t('auth.register.subtitle') }}</p>
+    <input type="text" [placeholder]="language.t('auth.fullName')" />
+    <input type="email" [placeholder]="language.t('auth.email')" />
+    <input type="password" [placeholder]="language.t('auth.password')" />
     <div class="auth-cta">
-      <app-button type="submit">Register</app-button>
+      <app-button type="submit">{{ language.t('auth.register.button') }}</app-button>
     </div>
-    <span>Already have an account? <a routerLink="/auth/login">Login</a></span>
+    <span>{{ language.t('auth.haveAccount') }} <a routerLink="/auth/login">{{ language.t('auth.login.link') }}</a></span>
   </form>
 </section>

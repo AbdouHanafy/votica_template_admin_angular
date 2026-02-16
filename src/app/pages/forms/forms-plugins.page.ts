@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from '../../components/ui/card/card.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-forms-plugins-page',
@@ -11,6 +12,7 @@ import { CardComponent } from '../../components/ui/card/card.component';
   styleUrl: './forms-common.page.scss'
 })
 export class FormsPluginsPage {
+  readonly language = inject(LanguageService);
   model = {
     launchDate: '2026-03-01',
     themeColor: '#2563eb',

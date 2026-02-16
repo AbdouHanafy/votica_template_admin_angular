@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../components/ui/button/button.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,4 +10,6 @@ import { ButtonComponent } from '../../components/ui/button/button.component';
   templateUrl: './login.page.html',
   styleUrl: './auth.page.scss'
 })
-export class LoginPage {}
+export class LoginPage {
+  readonly language = inject(LanguageService);
+}

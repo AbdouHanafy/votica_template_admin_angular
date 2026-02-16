@@ -13,7 +13,7 @@
       class="table-wrap__search"
       [ngModel]="query()"
       (ngModelChange)="query.set($event); onSearchChange()"
-      [placeholder]="searchPlaceholder()"
+      [placeholder]="searchPlaceholder() || language.t('table.search')"
     />
   </header>
 
@@ -77,7 +77,7 @@
           </tr>
         } @empty {
           <tr>
-            <td [attr.colspan]="columns().length" class="empty-state">No results found.</td>
+            <td [attr.colspan]="columns().length" class="empty-state">{{ language.t('table.noResults') }}</td>
           </tr>
         }
       </tbody>
@@ -85,8 +85,8 @@
   </div>
 
   <footer class="table-pagination">
-    <button type="button" (click)="previousPage()" [disabled]="currentPage() <= 1">Previous</button>
-    <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
-    <button type="button" (click)="nextPage()" [disabled]="currentPage() >= totalPages()">Next</button>
+    <button type="button" (click)="previousPage()" [disabled]="currentPage() <= 1">{{ language.t('table.previous') }}</button>
+    <span>{{ language.t('table.page') }} {{ currentPage() }} {{ language.t('table.of') }} {{ totalPages() }}</span>
+    <button type="button" (click)="nextPage()" [disabled]="currentPage() >= totalPages()">{{ language.t('table.next') }}</button>
   </footer>
 </div>

@@ -1,6 +1,6 @@
 <div class="layout-shell">
   <app-sidebar
-    [items]="navItems"
+    [items]="navItems()"
     [collapsed]="layoutService.sidebarCollapsed()"
     [mobileOpen]="layoutService.mobileSidebarOpen()"
     (navClick)="layoutService.closeMobileSidebar()"

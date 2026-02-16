@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardComponent } from '../../components/ui/card/card.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-advance-page',
@@ -9,10 +10,11 @@ import { CardComponent } from '../../components/ui/card/card.component';
   styleUrl: './advance.page.scss'
 })
 export class AdvancePage {
+  readonly language = inject(LanguageService);
   readonly components = [
-    { name: 'Modal Variants', usage: 'Delete confirmations, onboarding, detail view' },
-    { name: 'Accordion Sets', usage: 'FAQ blocks and settings groups' },
-    { name: 'Tabs', usage: 'Analytics filters and profile modules' },
-    { name: 'Dropdown Menus', usage: 'Topbar profile and notifications' }
+    { nameKey: 'advance.modal', usageKey: 'advance.modalUsage' },
+    { nameKey: 'advance.accordion', usageKey: 'advance.accordionUsage' },
+    { nameKey: 'advance.tabs', usageKey: 'advance.tabsUsage' },
+    { nameKey: 'advance.dropdown', usageKey: 'advance.dropdownUsage' }
   ];
 }

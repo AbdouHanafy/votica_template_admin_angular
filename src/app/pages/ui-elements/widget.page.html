@@ -1,14 +1,14 @@
 <section class="ui-page">
   <header>
-    <h1>Widget</h1>
-    <p>UI components like cards, counters, and stats boxes.</p>
+    <h1>{{ language.t('ui.widget.title') }}</h1>
+    <p>{{ language.t('ui.widget.subtitle') }}</p>
   </header>
 
   <div class="grid">
-    @for (item of widgets; track item.label) {
+    @for (item of widgets; track item.key) {
       <app-card>
         <div class="stat">
-          <p>{{ item.label }}</p>
+          <p>{{ language.t(item.key) }}</p>
           <strong>{{ item.value }}</strong>
           <span>{{ item.delta }}</span>
         </div>

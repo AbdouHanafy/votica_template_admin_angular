@@ -1,21 +1,21 @@
 <section class="forms-page">
   <header class="forms-page__header">
-    <h1>Forms</h1>
-    <p>Basic form templates: inputs, checkboxes, radio buttons, and text areas.</p>
+    <h1>{{ language.t('forms.basic.title') }}</h1>
+    <p>{{ language.t('forms.basic.subtitle') }}</p>
   </header>
 
-  <app-card title="Profile Form Template">
+  <app-card [title]="language.t('forms.basic.template')">
     <form class="form-grid">
       <label>
-        Full Name
+        {{ language.t('forms.basic.fullName') }}
         <input type="text" [(ngModel)]="model.fullName" name="fullName" />
       </label>
       <label>
-        Email
+        {{ language.t('forms.basic.email') }}
         <input type="email" [(ngModel)]="model.email" name="email" />
       </label>
       <label>
-        Role
+        {{ language.t('forms.basic.role') }}
         <select [(ngModel)]="model.role" name="role">
           <option>Admin</option>
           <option>Manager</option>
@@ -24,21 +24,21 @@
         </select>
       </label>
       <label>
-        Bio
+        {{ language.t('forms.basic.bio') }}
         <textarea rows="4" [(ngModel)]="model.bio" name="bio"></textarea>
       </label>
       <div class="radio-group">
-        <span>Status</span>
-        <label><input type="radio" value="active" [(ngModel)]="model.status" name="status" /> Active</label>
-        <label><input type="radio" value="inactive" [(ngModel)]="model.status" name="status" /> Inactive</label>
+        <span>{{ language.t('forms.basic.status') }}</span>
+        <label><input type="radio" value="active" [(ngModel)]="model.status" name="status" /> {{ language.t('users.active') }}</label>
+        <label><input type="radio" value="inactive" [(ngModel)]="model.status" name="status" /> {{ language.t('users.inactive') }}</label>
       </div>
       <label class="checkbox">
         <input type="checkbox" [(ngModel)]="model.updates" name="updates" />
-        Receive weekly product updates
+        {{ language.t('forms.basic.updates') }}
       </label>
       <div class="actions">
-        <app-button variant="ghost" type="button">Cancel</app-button>
-        <app-button type="button">Save Changes</app-button>
+        <app-button variant="ghost" type="button">{{ language.t('forms.basic.cancel') }}</app-button>
+        <app-button type="button">{{ language.t('forms.basic.save') }}</app-button>
       </div>
     </form>
   </app-card>

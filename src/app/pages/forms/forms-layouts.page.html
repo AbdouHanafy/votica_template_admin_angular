@@ -1,32 +1,32 @@
 <section class="forms-page">
   <header class="forms-page__header">
-    <h1>Form Layouts</h1>
-    <p>Different arrangements: horizontal, vertical, and multi-step forms.</p>
+    <h1>{{ language.t('forms.layouts.title') }}</h1>
+    <p>{{ language.t('forms.layouts.subtitle') }}</p>
   </header>
 
   <div class="columns">
-    <app-card title="Horizontal Layout">
+    <app-card [title]="language.t('forms.layouts.horizontal')">
       <div class="horizontal-form">
-        <label><span>Name</span><input type="text" placeholder="John Smith" /></label>
-        <label><span>Email</span><input type="email" placeholder="john@example.com" /></label>
+        <label><span>{{ language.t('forms.layouts.name') }}</span><input type="text" placeholder="John Smith" /></label>
+        <label><span>{{ language.t('forms.basic.email') }}</span><input type="email" placeholder="john@example.com" /></label>
       </div>
     </app-card>
 
-    <app-card title="Vertical Layout">
+    <app-card [title]="language.t('forms.layouts.vertical')">
       <div class="form-grid">
-        <label>Company<input type="text" placeholder="Votica Inc." /></label>
-        <label>Website<input type="text" placeholder="https://votica.com" /></label>
+        <label>{{ language.t('forms.layouts.company') }}<input type="text" placeholder="Votica Inc." /></label>
+        <label>{{ language.t('forms.layouts.website') }}<input type="text" placeholder="https://votica.com" /></label>
       </div>
     </app-card>
   </div>
 
-  <app-card title="Multi-Step Layout">
+  <app-card [title]="language.t('forms.layouts.multi')">
     <div class="stepper">
-      <strong>Step {{ step }} of 3</strong>
-      <p>@if (step === 1) {Account setup} @else if (step === 2) {Team details} @else {Review}</p>
+      <strong>{{ language.t('forms.layouts.step') }} {{ step }} {{ language.t('table.of') }} 3</strong>
+      <p>{{ stepLabel() }}</p>
       <div class="actions">
-        <button type="button" class="mini-btn" (click)="prevStep()">Previous</button>
-        <button type="button" class="mini-btn" (click)="nextStep()">Next</button>
+        <button type="button" class="mini-btn" (click)="prevStep()">{{ language.t('forms.layouts.previous') }}</button>
+        <button type="button" class="mini-btn" (click)="nextStep()">{{ language.t('forms.layouts.next') }}</button>
       </div>
     </div>
   </app-card>

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BadgeComponent } from '../../components/ui/badge/badge.component';
 import { ButtonComponent } from '../../components/ui/button/button.component';
 import { CardComponent } from '../../components/ui/card/card.component';
+import { LanguageService } from '../../core/services/language.service';
 
 type SortDirection = 'asc' | 'desc';
 type DealStatus = 'active' | 'inactive';
@@ -24,6 +25,7 @@ interface DealRow {
   styleUrl: './table-common.page.scss'
 })
 export class DataTablePage {
+  readonly language = inject(LanguageService);
   readonly rows = signal<DealRow[]>([
     { id: 'DL-3201', client: 'Acme Inc', owner: 'Emma Johnson', value: 12400, status: 'active' },
     { id: 'DL-3202', client: 'Blue Orbit', owner: 'John Smith', value: 8600, status: 'active' },

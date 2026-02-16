@@ -1,7 +1,7 @@
 <section class="analytics-page">
   <header class="analytics-page__hero">
-    <h1>Analytics Insights</h1>
-    <p>Advanced performance view with growth indicators and KPI tracking.</p>
+    <h1>{{ language.t('analytics.title') }}</h1>
+    <p>{{ language.t('analytics.subtitle') }}</p>
   </header>
 
   <div class="kpi-grid">
@@ -17,7 +17,7 @@
   </div>
 
   <div class="analytics-grid">
-    <app-card title="Traffic Performance" subtitle="Sessions and conversions">
+    <app-card [title]="language.t('analytics.trafficPerformance')" [subtitle]="language.t('analytics.sessionsConversions')">
       <app-chart
         [series]="areaSeries"
         [chart]="{ type: 'area', height: 300, toolbar: { show: false } }"
@@ -29,7 +29,7 @@
       />
     </app-card>
 
-    <app-card title="Performance Scorecard" subtitle="Core health indicators">
+    <app-card [title]="language.t('analytics.performanceScorecard')" [subtitle]="language.t('analytics.coreHealth')">
       <div class="metric-list">
         @for (metric of data.performanceMetrics; track metric.label) {
           <article class="metric-item">
@@ -45,12 +45,12 @@
       </div>
     </app-card>
 
-    <app-card title="Traffic Stats" subtitle="Source contribution">
+    <app-card [title]="language.t('analytics.trafficStats')" [subtitle]="language.t('analytics.sourceContribution')">
       <div class="traffic-list">
         @for (source of data.trafficSources; track source.label) {
           <article class="traffic-item">
             <div class="traffic-item__head">
-              <span>{{ source.label }}</span>
+              <span>{{ sourceLabel(source.label) }}</span>
               <strong>{{ source.value }}%</strong>
             </div>
             <div class="traffic-item__progress">
@@ -61,7 +61,7 @@
       </div>
     </app-card>
 
-    <app-card title="Monthly Comparison" subtitle="Current year vs previous year">
+    <app-card [title]="language.t('analytics.monthlyComparison')" [subtitle]="language.t('analytics.yearComparison')">
       <div class="comparison">
         <app-chart
           [series]="comparisonCurrentSeries"

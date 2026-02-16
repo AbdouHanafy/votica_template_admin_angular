@@ -1,6 +1,7 @@
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LanguageService } from '../../core/services/language.service';
 import { BadgeComponent } from '../ui/badge/badge.component';
 import { TableAction, TableActionEvent, TableColumn } from '../../models/table.model';
 
@@ -14,13 +15,14 @@ type SortDirection = 'asc' | 'desc';
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
+  readonly language = inject(LanguageService);
   readonly columns = input.required<TableColumn[]>();
   readonly rows = input.required<Record<string, unknown>[]>();
   readonly actions = input<TableAction[]>([]);
   readonly pageSize = input(5);
   readonly title = input<string>('');
   readonly subtitle = input<string>('');
-  readonly searchPlaceholder = input('Search...');
+  readonly searchPlaceholder = input('');
 
   readonly query = signal('');
   readonly currentPage = signal(1);

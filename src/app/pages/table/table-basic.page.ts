@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CardComponent } from '../../components/ui/card/card.component';
 import { TableComponent } from '../../components/table/table.component';
+import { LanguageService } from '../../core/services/language.service';
 import { TableColumn } from '../../models/table.model';
 
 @Component({
@@ -11,13 +12,14 @@ import { TableColumn } from '../../models/table.model';
   styleUrl: './table-common.page.scss'
 })
 export class TableBasicPage {
-  readonly columns: TableColumn[] = [
-    { key: 'sku', label: 'SKU', sortable: true, type: 'text' },
-    { key: 'product', label: 'Product', sortable: true, type: 'text' },
-    { key: 'category', label: 'Category', sortable: true, type: 'text' },
-    { key: 'stock', label: 'Stock', sortable: true, type: 'text' },
-    { key: 'status', label: 'Status', sortable: true, type: 'badge' }
-  ];
+  readonly language = inject(LanguageService);
+  readonly columns = computed<TableColumn[]>(() => [
+    { key: 'sku', label: this.language.t('table.sku'), sortable: true, type: 'text' },
+    { key: 'product', label: this.language.t('table.product'), sortable: true, type: 'text' },
+    { key: 'category', label: this.language.t('table.category'), sortable: true, type: 'text' },
+    { key: 'stock', label: this.language.t('table.stock'), sortable: true, type: 'text' },
+    { key: 'status', label: this.language.t('table.status'), sortable: true, type: 'badge' }
+  ]);
 
   readonly rows = [
     { sku: 'PRD-1043', product: 'Pro Analytics Suite', category: 'Software', stock: 48, status: 'active' },

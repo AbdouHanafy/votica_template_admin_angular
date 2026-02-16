@@ -1,15 +1,15 @@
 <section class="page-layouts">
   <header class="page-layouts__header">
-    <h1>Page Layouts</h1>
-    <p>Prebuilt templates for different page types.</p>
+    <h1>{{ language.t('pageLayouts.title') }}</h1>
+    <p>{{ language.t('pageLayouts.subtitle') }}</p>
   </header>
 
-  <app-card title="Templates Overview" subtitle="Examples: login page, profile page, landing page">
-    <p class="intro-copy">Choose a layout, preview it, then customize spacing, colors, and sections.</p>
+  <app-card [title]="language.t('pageLayouts.overview')" [subtitle]="language.t('pageLayouts.examples')">
+    <p class="intro-copy">{{ language.t('pageLayouts.intro') }}</p>
   </app-card>
 
   <div class="layout-grid">
-    @for (layout of layoutCards; track layout.name) {
+    @for (layout of layoutCards(); track layout.name) {
       <app-card>
         <article class="layout-card">
           <div class="layout-card__top">
@@ -19,17 +19,17 @@
           <p>{{ layout.description }}</p>
           <small>{{ layout.type }}</small>
           <div class="layout-card__actions">
-            <app-button size="sm" variant="ghost">Preview</app-button>
-            <app-button size="sm">Customize</app-button>
+            <app-button size="sm" variant="ghost">{{ language.t('pageLayouts.preview') }}</app-button>
+            <app-button size="sm">{{ language.t('pageLayouts.customize') }}</app-button>
           </div>
         </article>
       </app-card>
     }
   </div>
 
-  <app-card title="Customization Controls" subtitle="Ability to preview and customize layouts">
+  <app-card [title]="language.t('pageLayouts.controls')" [subtitle]="language.t('pageLayouts.controlsSub')">
     <div class="module-list">
-      @for (row of customizationOptions; track row.option) {
+      @for (row of customizationOptions(); track row.option) {
         <article class="module-row">
           <div class="module-row__head">
             <h4>{{ row.option }}</h4>

@@ -1,5 +1,5 @@
 <section class="tasks-page">
-  <app-card title="Team Tasks" subtitle="Operational overview">
+  <app-card [title]="language.t('tasks.title')" [subtitle]="language.t('tasks.subtitle')">
     <div class="tasks-list">
       @for (task of tasks; track task.title) {
         <article>

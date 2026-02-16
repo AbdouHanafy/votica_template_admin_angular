@@ -1,10 +1,10 @@
 <section class="forms-page">
   <header class="forms-page__header">
-    <h1>Image Cropper</h1>
-    <p>Preview, rotate, and zoom controls before saving an image.</p>
+    <h1>{{ language.t('forms.cropper.title') }}</h1>
+    <p>{{ language.t('forms.cropper.subtitle') }}</p>
   </header>
 
-  <app-card title="Cropper Demo">
+  <app-card [title]="language.t('forms.cropper.demo')">
     <div class="cropper-wrap">
       <div class="preview-box">
         <img
@@ -16,11 +16,11 @@
 
       <div class="controls">
         <label>
-          Zoom
+          {{ language.t('forms.cropper.zoom') }}
           <input type="range" min="1" max="2" step="0.1" [value]="zoom()" (input)="zoom.set(+$any($event.target).value)" />
         </label>
-        <button type="button" class="mini-btn" (click)="rotate()">Rotate 90°</button>
-        <button type="button" class="mini-btn">Save Cropped Image</button>
+        <button type="button" class="mini-btn" (click)="rotate()">{{ language.t('forms.cropper.rotate') }}</button>
+        <button type="button" class="mini-btn">{{ language.t('forms.cropper.save') }}</button>
       </div>
     </div>
   </app-card>

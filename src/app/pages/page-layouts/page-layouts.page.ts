@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CardComponent } from '../../components/ui/card/card.component';
 import { BadgeComponent } from '../../components/ui/badge/badge.component';
 import { ButtonComponent } from '../../components/ui/button/button.component';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-page-layouts-page',
@@ -11,37 +12,39 @@ import { ButtonComponent } from '../../components/ui/button/button.component';
   styleUrl: './page-layouts.page.scss'
 })
 export class PageLayoutsPage {
-  readonly layoutCards = [
-    {
-      name: 'Login Page Layout',
-      type: 'Authentication',
-      status: 'active',
-      description: 'Minimal auth-focused layout with centered form and brand section.'
-    },
-    {
-      name: 'Profile Page Layout',
-      type: 'User',
-      status: 'active',
-      description: 'Personal profile layout with avatar block, account details, and activity.'
-    },
-    {
-      name: 'Landing Page Layout',
-      type: 'Marketing',
-      status: 'active',
-      description: 'Conversion-oriented landing layout with hero, feature blocks, and CTA.'
-    },
-    {
-      name: 'Settings Page Layout',
-      type: 'System',
-      status: 'inactive',
-      description: 'Structured settings layout for preferences, security, and notifications.'
-    }
-  ];
+  readonly language = inject(LanguageService);
 
-  readonly customizationOptions = [
-    { option: 'Color Palette', value: 'Blue / Teal', status: 'active' },
-    { option: 'Typography Set', value: 'Manrope + Space Grotesk', status: 'active' },
-    { option: 'Spacing Scale', value: '8px baseline grid', status: 'active' },
-    { option: 'Layout Mode', value: 'Boxed / Full Width', status: 'inactive' }
-  ];
+  readonly layoutCards = computed(() => [
+    {
+      name: this.language.t('pageLayouts.card.loginName'),
+      type: this.language.t('pageLayouts.card.loginType'),
+      status: 'active',
+      description: this.language.t('pageLayouts.card.loginDesc')
+    },
+    {
+      name: this.language.t('pageLayouts.card.profileName'),
+      type: this.language.t('pageLayouts.card.profileType'),
+      status: 'active',
+      description: this.language.t('pageLayouts.card.profileDesc')
+    },
+    {
+      name: this.language.t('pageLayouts.card.landingName'),
+      type: this.language.t('pageLayouts.card.landingType'),
+      status: 'active',
+      description: this.language.t('pageLayouts.card.landingDesc')
+    },
+    {
+      name: this.language.t('pageLayouts.card.settingsName'),
+      type: this.language.t('pageLayouts.card.settingsType'),
+      status: 'inactive',
+      description: this.language.t('pageLayouts.card.settingsDesc')
+    }
+  ]);
+
+  readonly customizationOptions = computed(() => [
+    { option: this.language.t('pageLayouts.option.colors'), value: this.language.t('pageLayouts.option.colorsValue'), status: 'active' },
+    { option: this.language.t('pageLayouts.option.typo'), value: this.language.t('pageLayouts.option.typoValue'), status: 'active' },
+    { option: this.language.t('pageLayouts.option.spacing'), value: this.language.t('pageLayouts.option.spacingValue'), status: 'active' },
+    { option: this.language.t('pageLayouts.option.layout'), value: this.language.t('pageLayouts.option.layoutValue'), status: 'inactive' }
+  ]);
 }

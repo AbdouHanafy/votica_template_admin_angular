@@ -1,8 +1,8 @@
 <section class="users-page">
   <header class="users-page__header">
     <div>
-      <h1>User Management</h1>
-      <p>Manage account roles, status, and lifecycle actions.</p>
+      <h1>{{ language.t('users.title') }}</h1>
+      <p>{{ language.t('users.subtitle') }}</p>
     </div>
     <div class="users-page__actions">
       <div class="view-toggle">
@@ -13,7 +13,7 @@
           (click)="setViewMode('list')"
         >
           <span class="material-symbols-rounded">table_rows</span>
-          List View
+          {{ language.t('users.listView') }}
         </button>
         <button
           type="button"
@@ -22,13 +22,13 @@
           (click)="setViewMode('card')"
         >
           <span class="material-symbols-rounded">grid_view</span>
-          Card View
+          {{ language.t('users.cardView') }}
         </button>
       </div>
 
       <app-button (click)="onAddUser()">
         <span class="material-symbols-rounded">person_add</span>
-        Add User
+        {{ language.t('users.addUser') }}
       </app-button>
     </div>
   </header>
@@ -37,13 +37,13 @@
     <div class="view-panel view-panel--list">
       <app-card>
         <app-table
-          [title]="'All Users'"
-          [subtitle]="'Sorted, searchable, and paginated user list'"
-          [columns]="usersColumns"
+          [title]="language.t('users.allUsers')"
+          [subtitle]="language.t('users.allUsersSub')"
+          [columns]="usersColumns()"
           [rows]="$any(users())"
-          [actions]="rowActions"
+          [actions]="rowActions()"
           [pageSize]="8"
-          [searchPlaceholder]="'Search by name, email, role...'"
+          [searchPlaceholder]="language.t('users.searchList')"
           (actionSelected)="onAction($event)"
         />
       </app-card>
@@ -56,34 +56,34 @@
             type="search"
             [ngModel]="cardQuery()"
             (ngModelChange)="cardQuery.set($event)"
-            placeholder="Search card view users..."
+            [placeholder]="language.t('users.searchCard')"
           />
           <select [ngModel]="cardRole()" (ngModelChange)="cardRole.set($event)">
-            <option value="all">All Roles</option>
+            <option value="all">{{ language.t('users.allRoles') }}</option>
             @for (role of roles(); track role) {
               <option [value]="role">{{ role }}</option>
             }
           </select>
           <select [ngModel]="cardStatus()" (ngModelChange)="cardStatus.set($event)">
-            <option value="all">All Statuses</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="all">{{ language.t('users.allStatuses') }}</option>
+            <option value="active">{{ language.t('users.active') }}</option>
+            <option value="inactive">{{ language.t('users.inactive') }}</option>
           </select>
-          <app-button variant="ghost" (click)="resetCardFilters()">Reset</app-button>
+          <app-button variant="ghost" (click)="resetCardFilters()">{{ language.t('users.reset') }}</app-button>
         </div>
       </app-card>
 
       <section class="users-stats">
         <article>
-          <small>Total Users</small>
+          <small>{{ language.t('users.totalUsers') }}</small>
           <strong>{{ totalUsers() }}</strong>
         </article>
         <article>
-          <small>Active</small>
+          <small>{{ language.t('users.active') }}</small>
           <strong>{{ activeUsers() }}</strong>
         </article>
         <article>
-          <small>Inactive</small>
+          <small>{{ language.t('users.inactive') }}</small>
           <strong>{{ inactiveUsers() }}</strong>
         </article>
       </section>
@@ -106,18 +106,18 @@
               <div class="user-card__actions">
                 <app-button variant="ghost" size="sm" (click)="onEditUser(user)">
                   <span class="material-symbols-rounded">edit</span>
-                  Edit
+                  {{ language.t('users.edit') }}
                 </app-button>
                 <app-button variant="danger" size="sm" (click)="onRequestDelete(user)">
                   <span class="material-symbols-rounded">delete</span>
-                  Delete
+                  {{ language.t('users.delete') }}
                 </app-button>
               </div>
             </div>
           </app-card>
         } @empty {
           <app-card>
-            <p class="empty-message">No users match the current filters.</p>
+            <p class="empty-message">{{ language.t('users.noMatch') }}</p>
           </app-card>
         }
       </section>
@@ -126,10 +126,10 @@
 
   <app-modal
     [open]="showDeleteModal()"
-    [title]="'Delete User'"
+    [title]="language.t('users.deleteUser')"
     [description]="deleteMessage()"
-    [confirmLabel]="'Delete User'"
-    [cancelLabel]="'Keep User'"
+    [confirmLabel]="language.t('users.deleteUser')"
+    [cancelLabel]="language.t('users.keepUser')"
     tone="danger"
     (confirm)="confirmDelete()"
     (cancel)="closeDeleteModal()"

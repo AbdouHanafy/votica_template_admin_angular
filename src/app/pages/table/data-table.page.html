@@ -1,7 +1,7 @@
 <section class="table-page">
   <header class="table-page__header">
-    <h1>Data Table</h1>
-    <p>Sorting, filtering, pagination, inline edit, and export options.</p>
+    <h1>{{ language.t('table.data.title') }}</h1>
+    <p>{{ language.t('table.data.subtitle') }}</p>
   </header>
 
   <app-card>
@@ -10,10 +10,10 @@
         type="search"
         [ngModel]="query()"
         (ngModelChange)="query.set($event); page.set(1)"
-        placeholder="Filter deals..."
+        [placeholder]="language.t('table.data.filterDeals')"
       />
       <div class="toolbar__actions">
-        <app-button variant="ghost" (click)="exportCsv()">Export CSV</app-button>
+        <app-button variant="ghost" (click)="exportCsv()">{{ language.t('table.data.export') }}</app-button>
       </div>
     </div>
 
@@ -21,12 +21,12 @@
       <table>
         <thead>
           <tr>
-            <th (click)="setSort('id')">Deal ID</th>
-            <th (click)="setSort('client')">Client</th>
-            <th (click)="setSort('owner')">Owner</th>
-            <th (click)="setSort('value')">Value</th>
-            <th (click)="setSort('status')">Status</th>
-            <th>Actions</th>
+            <th (click)="setSort('id')">{{ language.t('table.data.dealId') }}</th>
+            <th (click)="setSort('client')">{{ language.t('table.customer') }}</th>
+            <th (click)="setSort('owner')">{{ language.t('table.data.owner') }}</th>
+            <th (click)="setSort('value')">{{ language.t('table.data.value') }}</th>
+            <th (click)="setSort('status')">{{ language.t('table.status') }}</th>
+            <th>{{ language.t('table.actions') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -51,9 +51,9 @@
               <td><app-badge [label]="row.status" /></td>
               <td class="row-actions">
                 @if (editingId() === row.id) {
-                  <button type="button" class="mini-btn" (click)="saveEdit()">Save</button>
+                  <button type="button" class="mini-btn" (click)="saveEdit()">{{ language.t('table.data.save') }}</button>
                 } @else {
-                  <button type="button" class="mini-btn" (click)="startEdit(row.id)">Inline Edit</button>
+                  <button type="button" class="mini-btn" (click)="startEdit(row.id)">{{ language.t('table.data.inlineEdit') }}</button>
                 }
               </td>
             </tr>
@@ -63,9 +63,9 @@
     </div>
 
     <footer class="pager">
-      <button type="button" class="mini-btn" (click)="page.set(page() - 1)" [disabled]="page() <= 1">Prev</button>
-      <span>Page {{ page() }} / {{ totalPages() }}</span>
-      <button type="button" class="mini-btn" (click)="page.set(page() + 1)" [disabled]="page() >= totalPages()">Next</button>
+      <button type="button" class="mini-btn" (click)="page.set(page() - 1)" [disabled]="page() <= 1">{{ language.t('table.data.prev') }}</button>
+      <span>{{ language.t('table.page') }} {{ page() }} / {{ totalPages() }}</span>
+      <button type="button" class="mini-btn" (click)="page.set(page() + 1)" [disabled]="page() >= totalPages()">{{ language.t('table.data.next') }}</button>
     </footer>
   </app-card>
 </section>

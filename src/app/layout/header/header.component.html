@@ -10,11 +10,37 @@
     </button>
     <div class="search">
       <span class="material-symbols-rounded">search</span>
-      <input type="text" placeholder="Search users, reports, orders..." />
+      <input type="text" [placeholder]="language.t('header.searchPlaceholder')" />
     </div>
   </div>
 
   <div class="header__right">
+    <div class="quick-controls">
+      <button type="button" class="icon-btn" (click)="toggleFullscreen()" aria-label="Toggle fullscreen">
+        <span class="material-symbols-rounded">fullscreen</span>
+      </button>
+
+      <app-dropdown [panelWidth]="'170px'" align="right">
+        <button type="button" class="lang-chip" dropdown-trigger>
+          <img class="flag-img" [src]="currentLanguage()?.flagSrc" [alt]="currentLanguage()?.label + ' flag'" />
+          <span class="material-symbols-rounded">expand_more</span>
+        </button>
+
+        <div class="lang-menu">
+          @for (option of language.options; track option.code) {
+            <button
+              type="button"
+              [class.is-active]="option.code === language.current()"
+              (click)="language.setLanguage(option.code)"
+            >
+              <img class="flag-img" [src]="option.flagSrc" [alt]="option.label + ' flag'" />
+              <span>{{ option.label }}</span>
+            </button>
+          }
+        </div>
+      </app-dropdown>
+    </div>
+
     <button type="button" class="icon-btn" (click)="toggleTheme.emit()">
       <span class="material-symbols-rounded">{{ theme() === 'light' ? 'dark_mode' : 'light_mode' }}</span>
     </button>
@@ -25,7 +51,7 @@
         <span class="badge-dot"></span>
       </button>
       <div class="menu-header">
-        <h4>Notifications</h4>
+        <h4>{{ language.t('header.notifications') }}</h4>
         <span>{{ data.notifications.length }}</span>
       </div>
       <div class="notification-list">
@@ -54,15 +80,15 @@
       <div class="profile-menu">
         <a routerLink="/profile">
           <span class="material-symbols-rounded">person</span>
-          <span>My Profile</span>
+          <span>{{ language.t('header.myProfile') }}</span>
         </a>
         <a routerLink="/settings">
           <span class="material-symbols-rounded">settings</span>
-          <span>Account Settings</span>
+          <span>{{ language.t('header.accountSettings') }}</span>
         </a>
         <button type="button">
           <span class="material-symbols-rounded">logout</span>
-          <span>Logout</span>
+          <span>{{ language.t('header.logout') }}</span>
         </button>
       </div>
     </app-dropdown>
