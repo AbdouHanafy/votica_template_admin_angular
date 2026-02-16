@@ -1,0 +1,17 @@
+<section class="ui-page">
+  <header>
+    <h1>Advance</h1>
+    <p>Advanced UI elements: modals, accordions, tabs, and dropdowns.</p>
+  </header>
+
+  <app-card title="Advanced Components Library">
+    <div class="list">
+      @for (item of components; track item.name) {
+        <article>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.usage }}</p>
+        </article>
+      }
+    </div>
+  </app-card>
+</section>

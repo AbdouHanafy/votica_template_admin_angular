@@ -1,0 +1,71 @@
+<section class="table-page">
+  <header class="table-page__header">
+    <h1>Data Table</h1>
+    <p>Sorting, filtering, pagination, inline edit, and export options.</p>
+  </header>
+
+  <app-card>
+    <div class="toolbar">
+      <input
+        type="search"
+        [ngModel]="query()"
+        (ngModelChange)="query.set($event); page.set(1)"
+        placeholder="Filter deals..."
+      />
+      <div class="toolbar__actions">
+        <app-button variant="ghost" (click)="exportCsv()">Export CSV</app-button>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th (click)="setSort('id')">Deal ID</th>
+            <th (click)="setSort('client')">Client</th>
+            <th (click)="setSort('owner')">Owner</th>
+            <th (click)="setSort('value')">Value</th>
+            <th (click)="setSort('status')">Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of paginated(); track row.id) {
+            <tr>
+              <td>{{ row.id }}</td>
+              <td>
+                @if (editingId() === row.id) {
+                  <input class="cell-input" [(ngModel)]="row.client" />
+                } @else {
+                  {{ row.client }}
+                }
+              </td>
+              <td>
+                @if (editingId() === row.id) {
+                  <input class="cell-input" [(ngModel)]="row.owner" />
+                } @else {
+                  {{ row.owner }}
+                }
+              </td>
+              <td>${{ row.value }}</td>
+              <td><app-badge [label]="row.status" /></td>
+              <td class="row-actions">
+                @if (editingId() === row.id) {
+                  <button type="button" class="mini-btn" (click)="saveEdit()">Save</button>
+                } @else {
+                  <button type="button" class="mini-btn" (click)="startEdit(row.id)">Inline Edit</button>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="pager">
+      <button type="button" class="mini-btn" (click)="page.set(page() - 1)" [disabled]="page() <= 1">Prev</button>
+      <span>Page {{ page() }} / {{ totalPages() }}</span>
+      <button type="button" class="mini-btn" (click)="page.set(page() + 1)" [disabled]="page() >= totalPages()">Next</button>
+    </footer>
+  </app-card>
+</section>

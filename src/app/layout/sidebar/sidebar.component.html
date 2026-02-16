@@ -1,0 +1,68 @@
+<aside
+  class="sidebar"
+  [class.sidebar--collapsed]="collapsed()"
+  [class.sidebar--mobile-open]="mobileOpen()"
+>
+  <div class="sidebar__brand">
+    <img class="brand-logo" src="logo_adminD.png" alt="Votica logo" />
+    @if (!collapsed()) {
+      <div class="brand-copy">
+        <strong>Votica Template</strong>
+        <span>Admin Dashboard</span>
+      </div>
+    }
+  </div>
+
+  <div class="sidebar__scroll">
+    @for (group of groupedItems(); track group.section) {
+      <section class="sidebar-group">
+        @if (!collapsed()) {
+          <p class="sidebar-group__title">{{ group.section }}</p>
+        }
+
+        <nav class="sidebar__nav">
+          @for (item of group.items; track item.label) {
+            @if (item.route) {
+              <a
+                class="nav-item"
+                [routerLink]="item.route"
+                routerLinkActive="is-active"
+                [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
+                [attr.title]="collapsed() ? item.label : null"
+                (click)="navClick.emit()"
+              >
+                <span class="nav-item__left">
+                  <span class="material-symbols-rounded nav-icon">{{ item.icon }}</span>
+                  @if (!collapsed()) {
+                    <span class="nav-label">{{ item.label }}</span>
+                  }
+                </span>
+                @if (!collapsed()) {
+                  <span class="nav-item__right">
+                    @if (item.badge) {
+                      <span class="nav-badge">{{ item.badge }}</span>
+                    } @else {
+                      <span class="material-symbols-rounded nav-arrow">chevron_right</span>
+                    }
+                  </span>
+                }
+              </a>
+            } @else {
+              <button type="button" class="nav-item nav-item--static" [attr.title]="collapsed() ? item.label : null">
+                <span class="nav-item__left">
+                  <span class="material-symbols-rounded nav-icon">{{ item.icon }}</span>
+                  @if (!collapsed()) {
+                    <span class="nav-label">{{ item.label }}</span>
+                  }
+                </span>
+                @if (!collapsed()) {
+                  <span class="material-symbols-rounded nav-arrow">chevron_right</span>
+                }
+              </button>
+            }
+          }
+        </nav>
+      </section>
+    }
+  </div>
+</aside>

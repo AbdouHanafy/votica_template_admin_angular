@@ -1,0 +1,152 @@
+.table-wrap {
+  display: grid;
+  gap: 16px;
+}
+
+.table-wrap__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-text-strong);
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+}
+
+.table-wrap__search {
+  width: 220px;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  padding: 10px 12px;
+  color: var(--color-text-strong);
+}
+
+.table-scroll {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+th {
+  color: var(--color-text-strong);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+th.clickable {
+  cursor: pointer;
+}
+
+.sort-indicator {
+  margin-left: 6px;
+}
+
+.avatar-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-strong);
+  font-weight: 600;
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.actions-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+}
+
+.action-btn--danger:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  button {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-alt);
+    color: var(--color-text-strong);
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  span {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-wrap__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-wrap__search {
+    width: 100%;
+  }
+}

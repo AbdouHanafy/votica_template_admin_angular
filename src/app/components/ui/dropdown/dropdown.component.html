@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <div class="dropdown__trigger" (click)="toggle($event)">
+    <ng-content select="[dropdown-trigger]" />
+  </div>
+
+  @if (open()) {
+    <div
+      class="dropdown__panel"
+      [class.dropdown__panel--left]="align() === 'left'"
+      [class.dropdown__panel--right]="align() === 'right'"
+      [style.width]="panelWidth()"
+      (click)="$event.stopPropagation()"
+    >
+      <ng-content />
+    </div>
+  }
+</div>

@@ -1,0 +1,17 @@
+<section class="table-page">
+  <header class="table-page__header">
+    <h1>Table</h1>
+    <p>Data tables for listing items with sorting, filtering, and pagination.</p>
+  </header>
+
+  <app-card>
+    <app-table
+      [title]="'Inventory Listing'"
+      [subtitle]="'Search, sort, and paginate products'"
+      [columns]="columns"
+      [rows]="$any(rows)"
+      [pageSize]="6"
+      [searchPlaceholder]="'Filter by SKU, product, category...'"
+    />
+  </app-card>
+</section>

@@ -1,0 +1,26 @@
+<div class="layout-shell">
+  <app-sidebar
+    [items]="navItems"
+    [collapsed]="layoutService.sidebarCollapsed()"
+    [mobileOpen]="layoutService.mobileSidebarOpen()"
+    (navClick)="layoutService.closeMobileSidebar()"
+  />
+
+  @if (layoutService.mobileSidebarOpen()) {
+    <button class="sidebar-backdrop" (click)="layoutService.closeMobileSidebar()"></button>
+  }
+
+  <div class="layout-main" [class.layout-main--collapsed]="layoutService.sidebarCollapsed()">
+    <app-header
+      [collapsed]="layoutService.sidebarCollapsed()"
+      [theme]="themeService.theme()"
+      (toggleSidebar)="layoutService.toggleSidebar()"
+      (toggleMobileSidebar)="layoutService.toggleMobileSidebar()"
+      (toggleTheme)="themeService.toggleTheme()"
+    />
+    <main class="layout-content">
+      <router-outlet />
+    </main>
+    <app-footer />
+  </div>
+</div>

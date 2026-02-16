@@ -1,0 +1,70 @@
+<header class="header">
+  <div class="header__left">
+    <button type="button" class="icon-btn mobile-only" (click)="toggleMobileSidebar.emit()">
+      <span class="material-symbols-rounded">menu</span>
+    </button>
+    <button type="button" class="icon-btn desktop-only" (click)="toggleSidebar.emit()">
+      <span class="material-symbols-rounded">
+        {{ collapsed() ? 'right_panel_open' : 'left_panel_close' }}
+      </span>
+    </button>
+    <div class="search">
+      <span class="material-symbols-rounded">search</span>
+      <input type="text" placeholder="Search users, reports, orders..." />
+    </div>
+  </div>
+
+  <div class="header__right">
+    <button type="button" class="icon-btn" (click)="toggleTheme.emit()">
+      <span class="material-symbols-rounded">{{ theme() === 'light' ? 'dark_mode' : 'light_mode' }}</span>
+    </button>
+
+    <app-dropdown [panelWidth]="'320px'" align="right">
+      <button type="button" class="icon-btn" dropdown-trigger>
+        <span class="material-symbols-rounded">notifications</span>
+        <span class="badge-dot"></span>
+      </button>
+      <div class="menu-header">
+        <h4>Notifications</h4>
+        <span>{{ data.notifications.length }}</span>
+      </div>
+      <div class="notification-list">
+        @for (notification of data.notifications; track notification.id) {
+          <button type="button" class="notification-item">
+            <div class="notification-item__title">
+              <strong>{{ notification.title }}</strong>
+              @if (notification.unread) {
+                <span class="unread-dot"></span>
+              }
+            </div>
+            <p>{{ notification.detail }}</p>
+            <small>{{ notification.time }}</small>
+          </button>
+        }
+      </div>
+    </app-dropdown>
+
+    <app-dropdown [panelWidth]="'230px'" align="right">
+      <button type="button" class="user-chip" dropdown-trigger>
+        <img src="photo_profil.jpg" alt="Current user" />
+        <span>Abdou Hanafi</span>
+        <span class="material-symbols-rounded">expand_more</span>
+      </button>
+
+      <div class="profile-menu">
+        <a routerLink="/profile">
+          <span class="material-symbols-rounded">person</span>
+          <span>My Profile</span>
+        </a>
+        <a routerLink="/settings">
+          <span class="material-symbols-rounded">settings</span>
+          <span>Account Settings</span>
+        </a>
+        <button type="button">
+          <span class="material-symbols-rounded">logout</span>
+          <span>Logout</span>
+        </button>
+      </div>
+    </app-dropdown>
+  </div>
+</header>

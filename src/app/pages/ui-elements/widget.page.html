@@ -1,0 +1,18 @@
+<section class="ui-page">
+  <header>
+    <h1>Widget</h1>
+    <p>UI components like cards, counters, and stats boxes.</p>
+  </header>
+
+  <div class="grid">
+    @for (item of widgets; track item.label) {
+      <app-card>
+        <div class="stat">
+          <p>{{ item.label }}</p>
+          <strong>{{ item.value }}</strong>
+          <span>{{ item.delta }}</span>
+        </div>
+      </app-card>
+    }
+  </div>
+</section>

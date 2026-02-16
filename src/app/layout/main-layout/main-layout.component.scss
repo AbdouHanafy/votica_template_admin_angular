@@ -1,0 +1,33 @@
+.layout-shell {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-bg);
+}
+
+.layout-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.layout-content {
+  padding: 24px;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .layout-content {
+    padding: 16px;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    border: 0;
+    background: rgba(3, 8, 20, 0.42);
+    z-index: 25;
+  }
+}

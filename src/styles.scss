@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0');
+
+:root {
+  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+
+  --sidebar-width: 278px;
+  --sidebar-collapsed-width: 92px;
+
+  --color-primary: #2563eb;
+  --color-primary-soft: rgba(37, 99, 235, 0.14);
+  --color-bg: #eef3fb;
+  --color-bg-accent: radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.2), transparent 35%),
+    radial-gradient(circle at 85% 12%, rgba(37, 99, 235, 0.15), transparent 30%),
+    radial-gradient(circle at 80% 90%, rgba(20, 184, 166, 0.13), transparent 28%);
+  --color-surface: rgba(255, 255, 255, 0.82);
+  --color-surface-elevated: rgba(255, 255, 255, 0.92);
+  --color-surface-alt: #f5f8ff;
+  --color-border: rgba(148, 163, 184, 0.26);
+  --color-text-strong: #0f172a;
+  --color-text-muted: #475569;
+  --shadow-card: 0 15px 45px rgba(15, 23, 42, 0.09);
+}
+
+[data-theme='dark'] {
+  --color-primary: #60a5fa;
+  --color-primary-soft: rgba(96, 165, 250, 0.2);
+  --color-bg: #050914;
+  --color-bg-accent: radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.16), transparent 35%),
+    radial-gradient(circle at 85% 12%, rgba(14, 165, 233, 0.14), transparent 30%),
+    radial-gradient(circle at 80% 90%, rgba(20, 184, 166, 0.12), transparent 28%);
+  --color-surface: rgba(15, 22, 40, 0.76);
+  --color-surface-elevated: rgba(19, 29, 51, 0.92);
+  --color-surface-alt: #111b31;
+  --color-border: rgba(100, 116, 139, 0.3);
+  --color-text-strong: #e5edf9;
+  --color-text-muted: #94a3b8;
+  --shadow-card: 0 18px 50px rgba(2, 8, 20, 0.55);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  background-image: var(--color-bg-accent);
+  color: var(--color-text-strong);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+}

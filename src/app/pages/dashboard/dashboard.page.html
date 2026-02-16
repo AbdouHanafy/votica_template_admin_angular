@@ -1,0 +1,102 @@
+<section class="dashboard">
+  <header class="dashboard__hero">
+    <div>
+      <h1>Executive Dashboard</h1>
+      <p>Track revenue, users, growth, and operational activity in real time.</p>
+    </div>
+    <div class="hero-highlight">
+      <span class="material-symbols-rounded">auto_graph</span>
+      <div>
+        <strong>$23,980</strong>
+        <small>Monthly recurring revenue</small>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats-grid">
+    @for (stat of fakeData.dashboardStats; track stat.label) {
+      <app-card [padded]="false">
+        <div class="stat-card">
+          <div class="stat-card__head">
+            <p>{{ stat.label }}</p>
+            <span class="material-symbols-rounded">{{ stat.icon }}</span>
+          </div>
+          <h2>{{ stat.value }}</h2>
+          <span [class]="'trend trend--' + stat.trend">{{ stat.change }}</span>
+        </div>
+      </app-card>
+    }
+  </div>
+
+  <div class="charts-grid">
+    <app-card title="Revenue Growth" subtitle="Monthly recurring revenue">
+      <app-chart
+        [series]="revenueChartSeries"
+        [chart]="{ type: 'line', height: 280, toolbar: { show: false }, zoom: { enabled: false } }"
+        [stroke]="{ curve: 'smooth', width: 3 }"
+        [fill]="{ type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.05 } }"
+        [colors]="['#2563eb']"
+        [xaxis]="{ categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }"
+        [dataLabels]="{ enabled: false }"
+      />
+    </app-card>
+
+    <app-card title="New Users" subtitle="Last 7 days">
+      <app-chart
+        [series]="usersChartSeries"
+        [chart]="{ type: 'bar', height: 280, toolbar: { show: false } }"
+        [colors]="['#14b8a6']"
+        [xaxis]="{ categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }"
+        [plotOptions]="{ bar: { columnWidth: '48%', borderRadius: 7 } }"
+        [dataLabels]="{ enabled: false }"
+      />
+    </app-card>
+
+    <app-card title="Traffic Sources" subtitle="Current distribution">
+      <app-chart
+        [series]="trafficSeries"
+        [labels]="trafficLabels"
+        [chart]="{ type: 'pie', height: 280 }"
+        [colors]="['#2563eb', '#0ea5e9', '#22c55e', '#f59e0b']"
+        [legend]="{ position: 'bottom' }"
+      />
+    </app-card>
+  </div>
+
+  <div class="bottom-grid">
+    <app-card title="Recent Activity" subtitle="Latest product and billing events">
+      <div class="activity-list">
+        @for (activity of fakeData.recentActivity; track activity.id) {
+          <article class="activity-item">
+            <span class="material-symbols-rounded activity-item__icon">{{ activity.icon }}</span>
+            <div>
+              <h4>{{ activity.title }}</h4>
+              <p>{{ activity.detail }}</p>
+            </div>
+            <small>{{ activity.time }}</small>
+          </article>
+        }
+      </div>
+    </app-card>
+
+    <app-card>
+      <app-table
+        [title]="'Recent Orders'"
+        [subtitle]="'Most recent order updates'"
+        [columns]="ordersColumns"
+        [rows]="$any(fakeData.orders)"
+        [pageSize]="5"
+      />
+    </app-card>
+  </div>
+
+  <app-card>
+    <app-table
+      [title]="'Recent Users'"
+      [subtitle]="'New users added to the platform'"
+      [columns]="usersColumns"
+      [rows]="$any(fakeData.users)"
+      [pageSize]="6"
+    />
+  </app-card>
+</section>

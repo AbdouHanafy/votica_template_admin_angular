@@ -1,0 +1,33 @@
+<section class="forms-page">
+  <header class="forms-page__header">
+    <h1>Form Layouts</h1>
+    <p>Different arrangements: horizontal, vertical, and multi-step forms.</p>
+  </header>
+
+  <div class="columns">
+    <app-card title="Horizontal Layout">
+      <div class="horizontal-form">
+        <label><span>Name</span><input type="text" placeholder="John Smith" /></label>
+        <label><span>Email</span><input type="email" placeholder="john@example.com" /></label>
+      </div>
+    </app-card>
+
+    <app-card title="Vertical Layout">
+      <div class="form-grid">
+        <label>Company<input type="text" placeholder="Votica Inc." /></label>
+        <label>Website<input type="text" placeholder="https://votica.com" /></label>
+      </div>
+    </app-card>
+  </div>
+
+  <app-card title="Multi-Step Layout">
+    <div class="stepper">
+      <strong>Step {{ step }} of 3</strong>
+      <p>@if (step === 1) {Account setup} @else if (step === 2) {Team details} @else {Review}</p>
+      <div class="actions">
+        <button type="button" class="mini-btn" (click)="prevStep()">Previous</button>
+        <button type="button" class="mini-btn" (click)="nextStep()">Next</button>
+      </div>
+    </div>
+  </app-card>
+</section>

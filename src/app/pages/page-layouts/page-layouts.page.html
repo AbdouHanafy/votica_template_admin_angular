@@ -1,0 +1,43 @@
+<section class="page-layouts">
+  <header class="page-layouts__header">
+    <h1>Page Layouts</h1>
+    <p>Prebuilt templates for different page types.</p>
+  </header>
+
+  <app-card title="Templates Overview" subtitle="Examples: login page, profile page, landing page">
+    <p class="intro-copy">Choose a layout, preview it, then customize spacing, colors, and sections.</p>
+  </app-card>
+
+  <div class="layout-grid">
+    @for (layout of layoutCards; track layout.name) {
+      <app-card>
+        <article class="layout-card">
+          <div class="layout-card__top">
+            <h3>{{ layout.name }}</h3>
+            <app-badge [label]="layout.status" />
+          </div>
+          <p>{{ layout.description }}</p>
+          <small>{{ layout.type }}</small>
+          <div class="layout-card__actions">
+            <app-button size="sm" variant="ghost">Preview</app-button>
+            <app-button size="sm">Customize</app-button>
+          </div>
+        </article>
+      </app-card>
+    }
+  </div>
+
+  <app-card title="Customization Controls" subtitle="Ability to preview and customize layouts">
+    <div class="module-list">
+      @for (row of customizationOptions; track row.option) {
+        <article class="module-row">
+          <div class="module-row__head">
+            <h4>{{ row.option }}</h4>
+            <app-badge [label]="row.status" />
+          </div>
+          <small>{{ row.value }}</small>
+        </article>
+      }
+    </div>
+  </app-card>
+</section>

@@ -1,0 +1,20 @@
+<section class="ui-page">
+  <header>
+    <h1>Icons</h1>
+    <p>Icon library: search, select, and copy icons for your UI.</p>
+  </header>
+
+  <app-card>
+    <div class="icons-grid">
+      @for (icon of icons; track icon) {
+        <button type="button" class="icon-item" (click)="copyIcon(icon)">
+          <span class="material-symbols-rounded">{{ icon }}</span>
+          <small>{{ icon }}</small>
+          @if (copied() === icon) {
+            <strong>Copied</strong>
+          }
+        </button>
+      }
+    </div>
+  </app-card>
+</section>

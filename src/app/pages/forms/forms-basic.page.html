@@ -1,0 +1,45 @@
+<section class="forms-page">
+  <header class="forms-page__header">
+    <h1>Forms</h1>
+    <p>Basic form templates: inputs, checkboxes, radio buttons, and text areas.</p>
+  </header>
+
+  <app-card title="Profile Form Template">
+    <form class="form-grid">
+      <label>
+        Full Name
+        <input type="text" [(ngModel)]="model.fullName" name="fullName" />
+      </label>
+      <label>
+        Email
+        <input type="email" [(ngModel)]="model.email" name="email" />
+      </label>
+      <label>
+        Role
+        <select [(ngModel)]="model.role" name="role">
+          <option>Admin</option>
+          <option>Manager</option>
+          <option>Support</option>
+          <option>Viewer</option>
+        </select>
+      </label>
+      <label>
+        Bio
+        <textarea rows="4" [(ngModel)]="model.bio" name="bio"></textarea>
+      </label>
+      <div class="radio-group">
+        <span>Status</span>
+        <label><input type="radio" value="active" [(ngModel)]="model.status" name="status" /> Active</label>
+        <label><input type="radio" value="inactive" [(ngModel)]="model.status" name="status" /> Inactive</label>
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" [(ngModel)]="model.updates" name="updates" />
+        Receive weekly product updates
+      </label>
+      <div class="actions">
+        <app-button variant="ghost" type="button">Cancel</app-button>
+        <app-button type="button">Save Changes</app-button>
+      </div>
+    </form>
+  </app-card>
+</section>

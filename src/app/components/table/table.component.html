@@ -1,0 +1,92 @@
+<div class="table-wrap">
+  <header class="table-wrap__header">
+    <div>
+      @if (title()) {
+        <h3>{{ title() }}</h3>
+      }
+      @if (subtitle()) {
+        <p>{{ subtitle() }}</p>
+      }
+    </div>
+    <input
+      type="search"
+      class="table-wrap__search"
+      [ngModel]="query()"
+      (ngModelChange)="query.set($event); onSearchChange()"
+      [placeholder]="searchPlaceholder()"
+    />
+  </header>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          @for (column of columns(); track column.key) {
+            <th [class.clickable]="column.sortable" (click)="setSort(column)">
+              {{ column.label }}
+              @if (isSorted(column.key)) {
+                <span class="sort-indicator">{{ sortDirection() === 'asc' ? '↑' : '↓' }}</span>
+              }
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of paginatedRows(); track $index) {
+          <tr>
+            @for (column of columns(); track column.key) {
+              <td>
+                @switch (column.type) {
+                  @case ('actions') {
+                    <div class="actions-cell">
+                      @for (action of actions(); track action.key) {
+                        <button
+                          type="button"
+                          class="action-btn"
+                          [class.action-btn--danger]="action.tone === 'danger'"
+                          [attr.aria-label]="action.label"
+                          [title]="action.label"
+                          (click)="emitAction(action.key, row)"
+                        >
+                          <span class="material-symbols-rounded">{{ action.icon }}</span>
+                        </button>
+                      }
+                    </div>
+                  }
+                  @case ('badge') {
+                    <app-badge [label]="cellText(row, column.key)" />
+                  }
+                  @case ('avatar') {
+                    <div class="avatar-cell">
+                      <img [src]="cellText(row, 'avatar')" alt="avatar" />
+                      <span>{{ cellText(row, column.key) }}</span>
+                    </div>
+                  }
+                  @case ('currency') {
+                    {{ $any(row[column.key]) | currency }}
+                  }
+                  @case ('date') {
+                    {{ cellText(row, column.key) | date: 'MMM d, y' }}
+                  }
+                  @default {
+                    {{ row[column.key] }}
+                  }
+                }
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td [attr.colspan]="columns().length" class="empty-state">No results found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="table-pagination">
+    <button type="button" (click)="previousPage()" [disabled]="currentPage() <= 1">Previous</button>
+    <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
+    <button type="button" (click)="nextPage()" [disabled]="currentPage() >= totalPages()">Next</button>
+  </footer>
+</div>

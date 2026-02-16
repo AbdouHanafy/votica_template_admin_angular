@@ -1,0 +1,39 @@
+<section class="forms-page">
+  <header class="forms-page__header">
+    <h1>Forms Plugins</h1>
+    <p>Advanced form components: date picker, color picker, and select/tag inputs.</p>
+  </header>
+
+  <app-card title="Plugin-Style Inputs">
+    <div class="form-grid">
+      <label>
+        Launch Date
+        <input type="date" [(ngModel)]="model.launchDate" />
+      </label>
+      <label>
+        Theme Color
+        <input type="color" [(ngModel)]="model.themeColor" />
+      </label>
+      <label>
+        Framework Select
+        <select [(ngModel)]="model.framework">
+          <option>Angular</option>
+          <option>React</option>
+          <option>Vue</option>
+        </select>
+      </label>
+      <label>
+        Add Tag
+        <div class="inline-row">
+          <input type="text" [(ngModel)]="model.tag" placeholder="Type then add" />
+          <button type="button" class="mini-btn" (click)="addTag()">Add</button>
+        </div>
+      </label>
+      <div class="tags">
+        @for (tag of model.tags; track tag) {
+          <span>{{ tag }}</span>
+        }
+      </div>
+    </div>
+  </app-card>
+</section>

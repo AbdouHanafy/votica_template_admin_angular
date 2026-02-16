@@ -1,0 +1,18 @@
+<section class="card" [class.no-padding]="!padded()">
+  @if (title() || subtitle()) {
+    <header class="card__header">
+      <div>
+        @if (title()) {
+          <h3>{{ title() }}</h3>
+        }
+        @if (subtitle()) {
+          <p>{{ subtitle() }}</p>
+        }
+      </div>
+      <ng-content select="[card-action]" />
+    </header>
+  }
+  <div class="card__content">
+    <ng-content />
+  </div>
+</section>

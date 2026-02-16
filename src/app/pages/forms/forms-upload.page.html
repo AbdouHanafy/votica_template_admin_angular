@@ -1,0 +1,26 @@
+<section class="forms-page">
+  <header class="forms-page__header">
+    <h1>File Upload</h1>
+    <p>Upload files/images with drag-drop and multiple file selection.</p>
+  </header>
+
+  <app-card title="Upload Zone">
+    <div
+      class="dropzone"
+      [class.is-dragging]="dragActive()"
+      (dragover)="$event.preventDefault(); dragActive.set(true)"
+      (dragleave)="dragActive.set(false)"
+      (drop)="onDrop($event)"
+    >
+      <p>Drag and drop files here, or select manually.</p>
+      <input type="file" multiple (change)="onFileSelect($event)" />
+    </div>
+    <div class="file-list">
+      @for (file of files(); track file) {
+        <span>{{ file }}</span>
+      } @empty {
+        <small>No files selected yet.</small>
+      }
+    </div>
+  </app-card>
+</section>

@@ -1,0 +1,138 @@
+<section class="users-page">
+  <header class="users-page__header">
+    <div>
+      <h1>User Management</h1>
+      <p>Manage account roles, status, and lifecycle actions.</p>
+    </div>
+    <div class="users-page__actions">
+      <div class="view-toggle">
+        <button
+          type="button"
+          class="view-toggle__btn"
+          [class.is-active]="viewMode() === 'list'"
+          (click)="setViewMode('list')"
+        >
+          <span class="material-symbols-rounded">table_rows</span>
+          List View
+        </button>
+        <button
+          type="button"
+          class="view-toggle__btn"
+          [class.is-active]="viewMode() === 'card'"
+          (click)="setViewMode('card')"
+        >
+          <span class="material-symbols-rounded">grid_view</span>
+          Card View
+        </button>
+      </div>
+
+      <app-button (click)="onAddUser()">
+        <span class="material-symbols-rounded">person_add</span>
+        Add User
+      </app-button>
+    </div>
+  </header>
+
+  @if (viewMode() === 'list') {
+    <div class="view-panel view-panel--list">
+      <app-card>
+        <app-table
+          [title]="'All Users'"
+          [subtitle]="'Sorted, searchable, and paginated user list'"
+          [columns]="usersColumns"
+          [rows]="$any(users())"
+          [actions]="rowActions"
+          [pageSize]="8"
+          [searchPlaceholder]="'Search by name, email, role...'"
+          (actionSelected)="onAction($event)"
+        />
+      </app-card>
+    </div>
+  } @else {
+    <div class="view-panel view-panel--card">
+      <app-card>
+        <div class="card-filters">
+          <input
+            type="search"
+            [ngModel]="cardQuery()"
+            (ngModelChange)="cardQuery.set($event)"
+            placeholder="Search card view users..."
+          />
+          <select [ngModel]="cardRole()" (ngModelChange)="cardRole.set($event)">
+            <option value="all">All Roles</option>
+            @for (role of roles(); track role) {
+              <option [value]="role">{{ role }}</option>
+            }
+          </select>
+          <select [ngModel]="cardStatus()" (ngModelChange)="cardStatus.set($event)">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <app-button variant="ghost" (click)="resetCardFilters()">Reset</app-button>
+        </div>
+      </app-card>
+
+      <section class="users-stats">
+        <article>
+          <small>Total Users</small>
+          <strong>{{ totalUsers() }}</strong>
+        </article>
+        <article>
+          <small>Active</small>
+          <strong>{{ activeUsers() }}</strong>
+        </article>
+        <article>
+          <small>Inactive</small>
+          <strong>{{ inactiveUsers() }}</strong>
+        </article>
+      </section>
+
+      <section class="users-grid">
+        @for (user of filteredCardUsers(); track user.id) {
+          <app-card>
+            <div class="user-card">
+              <div class="user-card__top">
+                <img [src]="user.avatar" [alt]="user.name + ' avatar'" />
+                <app-badge [label]="user.status" />
+              </div>
+
+              <div class="user-card__identity">
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.email }}</p>
+                <span>{{ user.role }}</span>
+              </div>
+
+              <div class="user-card__actions">
+                <app-button variant="ghost" size="sm" (click)="onEditUser(user)">
+                  <span class="material-symbols-rounded">edit</span>
+                  Edit
+                </app-button>
+                <app-button variant="danger" size="sm" (click)="onRequestDelete(user)">
+                  <span class="material-symbols-rounded">delete</span>
+                  Delete
+                </app-button>
+              </div>
+            </div>
+          </app-card>
+        } @empty {
+          <app-card>
+            <p class="empty-message">No users match the current filters.</p>
+          </app-card>
+        }
+      </section>
+    </div>
+  }
+
+  <app-modal
+    [open]="showDeleteModal()"
+    [title]="'Delete User'"
+    [description]="deleteMessage()"
+    [confirmLabel]="'Delete User'"
+    [cancelLabel]="'Keep User'"
+    tone="danger"
+    (confirm)="confirmDelete()"
+    (cancel)="closeDeleteModal()"
+    (close)="closeDeleteModal()"
+  />
+</section>

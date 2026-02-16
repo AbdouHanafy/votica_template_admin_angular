@@ -1,0 +1,232 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 74px;
+  background: color-mix(in oklab, var(--color-bg) 84%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.header__left,
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.16s ease, border-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+}
+
+.search {
+  width: min(540px, 48vw);
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+
+  input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-text-strong);
+    font: inherit;
+  }
+}
+
+.badge-dot {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+}
+
+.user-chip {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 12px;
+  height: 40px;
+  padding: 0 10px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--color-text-strong);
+  transition: border-color 0.2s ease;
+
+  img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  > span {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+}
+
+.user-chip:hover {
+  border-color: var(--color-primary);
+}
+
+.menu-header {
+  height: 48px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+
+  h4 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: 0.9rem;
+  }
+
+  span {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in oklab, var(--color-primary) 16%, transparent);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}
+
+.notification-list {
+  max-height: 280px;
+  overflow: auto;
+}
+
+.notification-item {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  strong {
+    color: var(--color-text-strong);
+    font-size: 0.84rem;
+  }
+
+  p {
+    margin: 4px 0;
+    color: var(--color-text-muted);
+    font-size: 0.79rem;
+    line-height: 1.4;
+  }
+
+  small {
+    color: var(--color-text-muted);
+    font-size: 0.73rem;
+  }
+}
+
+.notification-item:hover {
+  background: color-mix(in oklab, var(--color-surface-alt) 86%, transparent);
+}
+
+.notification-item__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.unread-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+
+.profile-menu {
+  display: grid;
+  padding: 8px;
+  gap: 2px;
+
+  a,
+  button {
+    height: 38px;
+    border-radius: 10px;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 0 10px;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  a:hover,
+  button:hover {
+    background: var(--color-surface-alt);
+    color: var(--color-text-strong);
+  }
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: grid;
+  }
+
+  .header {
+    padding: 0 14px;
+  }
+
+  .search {
+    width: min(58vw, 280px);
+  }
+
+  .user-chip > span:nth-child(2) {
+    display: none;
+  }
+}

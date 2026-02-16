@@ -1,0 +1,39 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown__trigger {
+  display: inline-flex;
+}
+
+.dropdown__panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  z-index: 60;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  animation: dropdown-in 0.18s ease;
+  backdrop-filter: blur(10px);
+}
+
+.dropdown__panel--right {
+  right: 0;
+}
+
+.dropdown__panel--left {
+  left: 0;
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
