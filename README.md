@@ -2,41 +2,57 @@
 
 Premium Angular standalone admin template for SaaS products, analytics back offices, and internal tools.
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Angular](https://img.shields.io/badge/Angular-21.1.x-red.svg)
+![Version](https://img.shields.io/badge/Version-1.1.0-blue.svg)
+
 ## Product Overview
 
-- Angular `21` with standalone components (no NgModules)
-- SCSS design system with dark/light theme
+- Angular `21` with standalone components only (no NgModules)
+- Modern SCSS design system with dark/light mode
 - Reusable UI component library
 - Lazy-loaded page architecture
-- Responsive layout for desktop, tablet, and mobile
-- Realistic fake data for all demo pages (no backend dependency)
+- Responsive layout (desktop, tablet, mobile)
+- Realistic fake data across all pages (no backend required)
+
+## Multi-Language and RTL
+
+- Built-in language switcher with flags in topbar
+- Supported languages:
+  - English (`en`)
+  - Francais (`fr`)
+  - Tounsi (`tn`)
+- Automatic RTL when Tounsi is selected
+- Language preference persisted in `localStorage` (`app-language`)
 
 ## Tech Stack
 
 - Angular `21.1.x`
 - TypeScript `5.9.x`
 - ApexCharts + ng-apexcharts
-- Vitest (via Angular test builder)
+- Vitest (Angular test builder)
 
-## Features
+## Core Features
 
 - Collapsible sidebar + sticky topbar layout
-- Dashboard with KPI cards and charts
-- Multi-language UI with persistent selector:
-  - English
-  - Francais
-  - Tounsi (with RTL)
-- Flag-based language selector in topbar
-- Users management page:
-  - list and card views
-  - search, sorting, pagination
-  - fake CRUD interactions
-- Analytics page with KPI widgets and chart visualizations
+- Dashboard with KPI cards, charts, and activity stream
+- Users management:
+  - List/Card view toggle
+  - Search, sorting, pagination
+  - Fake CRUD actions + confirmation modal
+- Analytics with KPI widgets and charts
 - Auth pages:
-  - login
-  - register
-  - forgot password
-- UI Elements, Forms, and Table demo sections
+  - Login
+  - Register
+  - Forgot Password
+- Extended demo pages:
+  - UI Elements
+  - Forms
+  - Table / Data Table
+  - Page Layouts
+  - Tasks
+  - Settings
+  - Profile
 
 ## Project Structure
 
@@ -85,36 +101,43 @@ npm run test:ci
 npm run check:release
 ```
 
-This runs:
-- production build
-- unit tests in CI mode
+Runs:
+- Production build
+- Unit tests (CI mode)
 
-## Theme Customization
+## Theming
 
-- Global theming is handled by `ThemeService` in `src/app/core/services/theme.service.ts`.
-- Theme mode is persisted in `localStorage` with key `app-theme`.
-- Main style tokens are in `src/styles.scss`.
+- Theme logic: `src/app/core/services/theme.service.ts`
+- Persisted key: `app-theme`
+- Global tokens: `src/styles.scss`
 
-## Language and Localization
+## Localization
 
-- Global localization is handled by `LanguageService` in `src/app/core/services/language.service.ts`.
-- Selected language is persisted in `localStorage` with key `app-language`.
-- Topbar selector uses local SVG flags from `public/flags/`.
-- RTL is automatically applied for Tunisian language mode.
+- Language logic: `src/app/core/services/language.service.ts`
+- Persisted key: `app-language`
+- Flag assets:
+  - `public/flags/us.svg`
+  - `public/flags/fr.svg`
+  - `public/flags/tn.svg`
 
 ## Routing and Lazy Loading
 
-All main pages are loaded with `loadComponent` in `src/app/app.routes.ts`.
+- Route config: `src/app/app.routes.ts`
+- Pages are lazy-loaded with `loadComponent`
 
 ## Fake Data
 
-Demo data is centralized in:
-- `src/app/services/fake-data.service.ts`
+- Centralized fake data service:
+  - `src/app/services/fake-data.service.ts`
 
-You can replace these collections with API-backed services without changing page contracts.
+You can replace fake collections with API services without changing page structure.
 
 ## Support
 
-- Product name: `Votica Template Admin Dashboard`
+- Product: `Votica Template Admin Dashboard`
 - Author: `Abdou Hanafi`
-- Support scope: bug fixes and setup guidance for this template codebase.
+- Support scope: setup help, reproducible bug fixes, and template guidance
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE`.
