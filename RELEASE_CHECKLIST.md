@@ -10,7 +10,8 @@ Use this checklist before submitting the template for sale.
 
 Current status:
 - `npm run build` : PASS
-- `npm run test -- --watch=false` : PASS (only 1 test file, minimal coverage)
+- `npm run test -- --watch=false` : PASS
+- `npm run check:release` : PASS
 
 ## 2. Documentation Package
 
@@ -24,7 +25,10 @@ Current status:
 - [ ] Add support policy (response time, support scope).
 
 Current status:
-- Only default Angular `README.md` exists.
+- Product documentation is in place:
+  - `README.md`
+  - `CHANGELOG.md`
+  - `SUPPORT.md`
 
 ## 3. Licensing and Legal
 
@@ -36,7 +40,9 @@ Current status:
 - [ ] Confirm logo/profile images are redistributable.
 
 Current status:
-- No `LICENSE` and no third-party credits document found.
+- Legal docs are in place:
+  - `LICENSE`
+  - `CREDITS.md`
 
 ## 4. Product Readiness (UI/UX)
 
@@ -65,4 +71,3 @@ npm ci
 npm run check:release
 npm run start
 ```
-

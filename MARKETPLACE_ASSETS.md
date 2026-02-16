@@ -44,6 +44,8 @@ Feature bullets:
 - Production-ready dashboard, users, analytics, auth pages
 - Reusable UI components and clean architecture
 - Dark/light mode with SCSS variables
+- Multi-language support (English, Francais, Tounsi)
+- RTL mode support for Tunisian language
 - Searchable/sortable/paginated tables
 - Fake realistic data and no backend dependency
 - Responsive design for mobile/tablet/desktop
@@ -56,4 +58,3 @@ Feature bullets:
 - `LICENSE`
 - `CREDITS.md`
 - `SUPPORT.md`
-

@@ -2,6 +2,36 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.1.0] - 2026-02-16
+
+### Added
+
+- Full localization system with persistent language preference:
+  - English (`en`)
+  - Francais (`fr`)
+  - Tounsi (`tn`)
+- Global `LanguageService` for centralized UI translations and direction handling.
+- RTL support when `tn` language is selected.
+- Flag assets for language selector:
+  - `public/flags/us.svg`
+  - `public/flags/fr.svg`
+  - `public/flags/tn.svg`
+- Header language dropdown with flag-first UX and persisted selection.
+
+### Changed
+
+- Localized core layout and major pages:
+  - Header, Sidebar, Footer
+  - Dashboard, Users, Analytics
+  - Auth pages
+  - UI Elements pages
+  - Forms pages
+  - Table and Data Table pages
+  - Page Layouts, Tasks, Settings, Profile
+- Localized shared UI elements:
+  - table labels and pagination text
+  - status badge labels
+
 ## [1.0.0] - 2026-02-16
 
 ### Added
@@ -41,4 +71,3 @@ All notable changes to this project are documented in this file.
 - Stylesheet resolution issues on layout components (`NG2008`).
 - Sidebar structure and route mapping for new sections.
 - Status badge logic for active/inactive display.
-

@@ -22,6 +22,11 @@ Premium Angular standalone admin template for SaaS products, analytics back offi
 
 - Collapsible sidebar + sticky topbar layout
 - Dashboard with KPI cards and charts
+- Multi-language UI with persistent selector:
+  - English
+  - Francais
+  - Tounsi (with RTL)
+- Flag-based language selector in topbar
 - Users management page:
   - list and card views
   - search, sorting, pagination
@@ -89,6 +94,13 @@ This runs:
 - Global theming is handled by `ThemeService` in `src/app/core/services/theme.service.ts`.
 - Theme mode is persisted in `localStorage` with key `app-theme`.
 - Main style tokens are in `src/styles.scss`.
+
+## Language and Localization
+
+- Global localization is handled by `LanguageService` in `src/app/core/services/language.service.ts`.
+- Selected language is persisted in `localStorage` with key `app-language`.
+- Topbar selector uses local SVG flags from `public/flags/`.
+- RTL is automatically applied for Tunisian language mode.
 
 ## Routing and Lazy Loading
 
